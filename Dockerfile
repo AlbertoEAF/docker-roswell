@@ -8,9 +8,10 @@ RUN echo "Installing roswell..." \
         && dpkg -i roswell.deb \
         && rm roswell.deb \
         && echo "Setting up roswell for the first time..." && ros \
-        && echo "Setting up common-lisp folder for asdf..." && mkdir -p /root/common-lisp/
+        && echo "Setting up common-lisp folder for asdf..." && mkdir -p /root/common-lisp/ && mkdir -p /root/.roswell/bin
 
-ENV PATH="/root/.roswell/bin/:${PATH}"
+ENV ROSWELL_BIN="/root/.roswell/bin"
+ENV PATH="${ROSWELL_BIN}:${PATH}"
 
 WORKDIR /root/common-lisp/
 
